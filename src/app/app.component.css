@@ -1,0 +1,14 @@
+.sucess {
+    border: 3px solid green;
+    height: 70vh;
+    overflow: auto;
+    width: 55vw;
+}
+
+
+.error {
+    border: 3px solid red;
+    height: 70vh;
+    overflow: auto;
+    width: 55vw;
+}

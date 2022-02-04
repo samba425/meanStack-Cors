@@ -17,12 +17,14 @@ app.all('/*', async(req, res) => {
 			var reqObj = {
 				uri: req.url.substring(1),
 				method: req.method,
+				body:req.body,
 				json: true
 			};
+			console.log('--mysre', reqObj)
 			let result = await request(reqObj);
-			 return res.json(result)
+			 return res.status(200).json(result)
 		} catch(e) {
-			return res.json(e)
+			return res.status(e['statusCode']).json(e['error'] ? e['error'] : e)
 		}
 		
 	}
