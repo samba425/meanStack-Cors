@@ -10,6 +10,10 @@ app.use(bodyParser.json());
 
 const port = 4000;
 
+
+app.get('/test', (req,res) => {
+	res.send('hello...')
+})
 app.all('/*', async(req, res) => {
 	console.log('url:',req.url.substring(1))
 	if (req.url) {
@@ -20,7 +24,11 @@ app.all('/*', async(req, res) => {
 				body:req.body,
 				json: true
 			};
-			console.log('--mysre', reqObj)
+			
+			if(req['headers']) {
+				reqObj['headers'] =  req.headers
+			}
+			console.log('--external payload',reqObj)
 			let result = await request(reqObj);
 			 return res.status(200).json(result)
 		} catch(e) {
